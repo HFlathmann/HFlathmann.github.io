@@ -36,20 +36,33 @@
             background: #f9f9f9;
         }
     </style>
+
+ 
 </head>
 <body>
+<script>    
+function sprechen(text) {
+    //const text = document.getElementById("text").value;
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "de-DE";
+    utterance.rate = 1.0;
+    utterance.pitch = 1.0;
+
+    speechSynthesis.speak(utterance);
+}
+</script>   
 
     <h1>PDF Vorleser</h1>
 
-    <input type="file" id="pdfFile" accept=".pdf">
-
     <div>
+        <input type="file" id="pdfFile" accept=".pdf">
         <button id="readBtn" disabled>Vorlesen</button>
         <button id="stopBtn">Stop</button>
     </div>
 
     <div id="textOutput">
-        PDF-Text erscheint hier...
+        PDF-Text hier...
     </div>
 
     <script>
@@ -102,6 +115,9 @@
 
         readBtn.addEventListener('click', () => {
             if (!extractedText) return;
+
+            sprechen(extractedText);
+            return ;
 
             speechSynthesis.cancel();
 
