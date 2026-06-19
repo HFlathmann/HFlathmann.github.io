@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Vorleser</title>
+
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px 5px;
+            cursor: pointer;
+        }
+
+        #textOutput {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 15px;
+            height: 350px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            background: #f9f9f9;
+        }
+    </style>
+
+ 
+</head>
+<body>
+<script>    
+function sprechen(text) {
+    //const text = document.getElementById("text").value;
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "de-DE";
+    utterance.rate = 1.0;
+    utterance.pitch = 1.0;
+
+    speechSynthesis.speak(utterance);
+}
+</script>   
+
+    <h1>PDF Vorleser</h1>
+
+    <div>
+        <input type="file" id="pdfFile" accept=".pdf">
+    </div>
+    <br>
+    <div>
+        <button id="readBtn" disabled>Vorlesen</button>
+        <button id="stopBtn">Stop</button>
+    </div>
+
+    <div id="textOutput">
+        PDF-Text hier...
+    </div>
+
+    <script>
+        const pdfFile = document.getElementById('pdfFile');
+        const textOutput = document.getElementById('textOutput');
+        const readBtn = document.getElementById('readBtn');
+        const stopBtn = document.getElementById('stopBtn');
+
+        let extractedText = '';
+
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        pdfFile.addEventListener('change', async (event) => {
+            const file = event.target.files[0];
+
+            if (!file) return;
+
+            const reader = new FileReader();
+
+            reader.onload = async function () {
+                const typedArray = new Uint8Array(this.result);
+
+                try {
+                    const pdf = await pdfjsLib.getDocument(typedArray).promise;
+
+                    extractedText = '';
+
+                    for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                        const page = await pdf.getPage(pageNum);
+                        const content = await page.getTextContent();
+
+                        const pageText = content.items
+                            .map(item => item.str)
+                            .join(' ');
+
+                        extractedText += pageText + '\n\n';
+                    }
+
+                    textOutput.textContent = extractedText;
+                    readBtn.disabled = false;
+
+                } catch (error) {
+                    alert('Fehler beim Lesen der PDF: ' + error.message);
+                }
+            };
+
+            reader.readAsArrayBuffer(file);
+        });
+
+        readBtn.addEventListener('click', () => {
+            if (!extractedText) return;
+
+            sprechen(extractedText);
+            return ;
+
+            speechSynthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(extractedText);
+            utterance.lang = 'de-DE';
+            utterance.rate = 1;
+            utterance.pitch = 1;
+
+            speechSynthesis.speak(utterance);
+        });
+
+        stopBtn.addEventListener('click', () => {
+            speechSynthesis.cancel();
+        });
+    </script>
+
+</body>
+</html>
