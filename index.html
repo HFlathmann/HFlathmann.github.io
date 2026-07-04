@@ -1,21 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js CDN Beispiel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f7f6;
+        }
+        #app {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 40px0px;
+        }
+        button {
+            background-color: #42b883;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #35495e;
+        }
+    </style>
 </head>
 <body>
 
-<div class="jumbotron text-center">
-  <h2>My First Bootstrap Page</h2>
-  <p>Some Bootstrap buttons:</p>
-  <button class="btn btn-primary">Primary</button>
-  <button class="btn btn-success">Success</button>
-</div>
+    <!-- Das HTML-Template, das Vue kontrolliert -->
+    <div id="app">
+        <h1>{{ message }}</h1>
+        <p>Reaktiver Zähler:</p>
+        <button @click="increment">Geklickt: {{ count }} mal</button>
+    </div>
+
+    <!-- 1. Einbindung von Vue 3 über das globale CDN -->
+    <script src="https://unpkg.com"></script>
+
+    <!-- 2. Vue-App initialisieren -->
+    <script>
+        // Vue stellt sich durch das CDN global als 'Vue' bereit
+        const { createApp, ref } = Vue
+
+        createApp({
+            setup() {
+                // Reaktive Daten definieren
+                const message = ref('Hallo von Vue.js!')
+                const count = ref(0)
+
+                // Funktion für den Button-Klick
+                function increment() {
+                    count.value++
+                }
+
+                // Daten und Funktionen für das Template freigeben
+                return {
+                    message,
+                    count,
+                    increment
+                }
+            }
+        }).mount('#app') // Vue an das div mit der ID 'app' binden
+    </script>
 
 </body>
 </html>
+
