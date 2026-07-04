@@ -33,13 +33,6 @@
 </head>
 <body>
 
-    <!-- Das HTML-Template, das Vue kontrolliert -->
-    <div id="app">
-        <h1>{{ message }}</h1>
-        <p>Reaktiver Zähler:</p>
-        <button @click="increment">Geklickt: {{ count }} mal</button>
-    </div>
-
     <!-- 1. Einbindung von Vue 3 über das globale CDN -->
     <script src="https://unpkg.com"></script>
 
@@ -69,6 +62,15 @@
         }).mount('#app') // Vue an das div mit der ID 'app' binden
     </script>
 
+    <!-- Das HTML-Template, das Vue kontrolliert -->
+    <div id="app">
+        <h1>{{ message }}</h1>
+        <p>Reaktiver Zähler:</p>
+        <button @click="increment">Geklickt: {{ count }} mal</button>
+    </div>
+
+
+    
 </body>
 </html>
 
