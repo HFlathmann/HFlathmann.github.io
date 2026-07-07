@@ -1,46 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Helmut Flathmann Experimentierseite</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="assets/JSclass.js"></script>
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
+  <script src="assets/JSclass.js"></script>  
 </head>
 <body>
 
+<div id="nav" w3-include-html="nav.html"></div>  
 
-<div>
-<nav class="navbar navbar-expand-sm bg-light navbar-light sticky-top" id="mainMenue">
-	    <a href="./index.php"><img class="navbar-brand img-fluid" src="./intern/logo.jpg" alt=""></a>          
-	    <a href="./index.php"><h1 class="navbar-text"><b>Kräha-Hof<br>Event, Veranstaltungen</b></h1></a>
-	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navpoints" aria-controls="navpoints" aria-expanded="false" ><span class="navbar-toggler-icon"></span> </button>
-	    <div class="navpoints">
-	    <div id="navpoints" class="collapse navbar-collapse right">
-        <ul class="nav navbar-nav ">
-          <li class="nav-item"><a class="nav-link" href="./test.php?" >Test</a></li>
-          <li class="nav-item"><a class="nav-link" href="./index.php?anker=flohmarkt" >Flohmarkt</a></li>
-          <li class="nav-item"><a class="nav-link" href="./index.php?anker=konzert" >Veranstaltung</a></li>          
-          <li class="nav-item"><a class="nav-link" href="./termine.php" >Termine</a></li>
-          <li class="nav-item"><a class="nav-link" href="./kräha_hof_geschichte.php" >Entstehung</a></li>          
-          <li class="nav-item"><a class="nav-link" href="./kontaktformular.php" >Kontakt</a></li>     
-        </ul>
-  </div>
-	    </div>
-	</nav> 
+<div id="header" w3-include-html="header.html"></div>
 
-</div>
-<div class="jumbotron text-center">
-  <h2>My First Bootstrap Page</h2>
-  <p>Some Bootstrap buttons:</p>
-  <button class="btn btn-primary">Primary</button>
-  <button class="btn btn-success">Success</button>
-<p id="demo"></p>
+<div id="footer" w3-include-html="footer.html"></div>
+
 <script>
-    Main.Today();
+    //Main.toggleShow("demo", "none");
 </script>
-
 </body>
+<script>w3.includeHTML();</script>
 </html>

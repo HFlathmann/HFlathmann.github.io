@@ -6,10 +6,17 @@ all class for projects
 class _Main {
     static Init(filename) {
     }
-    
 
+    static docShow(id, text) {
+        document.getElementById(id).innerHTML = text;
+    }
+    
+    static toggleShow(id, mode) {
+        //w3.toggleShow(id);
+        document.getElementById(id).style.display = mode;
+    }
     static Today() {
-        day = "";
+        let day = "";
         let date = new Date().getDay();
         
         switch (date) {
@@ -35,8 +42,7 @@ class _Main {
             day = "Saturday";
         } // end of switch
         
-        document.getElementById("demo").innerHTML= "Heute ist " + day;
-        return "Today is " + day;
+        return day;
 
     }// end of Today
 }// end of class
