@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="assets/JSclass.js"></script>
 </head>
 <body>
 
@@ -37,37 +38,7 @@
   <button class="btn btn-primary">Primary</button>
   <button class="btn btn-success">Success</button>
 <p id="demo"></p>
-<script>
-let day;
-let date = new Date().getDay();
- 
-switch (date) {
-  case 0:
-    day = "Sunday";
-    break;
-  case 1:
-    day = "Monday";
-    break;
-  case 2:
-    day = "Tuesday";
-    break;
-  case 3:
-    day = "Wednesday";
-    break;
-  case 4:
-    day = "Thursday";
-    break;
-  case 5:
-    day = "Friday";
-    break;
-  case  6:
-    day = "Saturday";
-}
 
-document.getElementById("demo").innerHTML = "Today is " + day;
-</script>
-
-</div>
 
 </body>
 </html>
