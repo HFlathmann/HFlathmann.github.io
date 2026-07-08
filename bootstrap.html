@@ -12,10 +12,16 @@
 </head>
 <body>
 <!--
-<div id="nav" w3-include-html="nav.html"></div>  
-<div id="header" w3-include-html="header.html"></div>
-<div id="footer" w3-include-html="footer.html"></div>
+<div id="nav"    w3-include-html="includes/nav.html"></div>  
+<div id="header" w3-include-html="includes/header.html"></div>
+<div id="footer" w3-include-html="includes/footer.html"></div>
+<div id="mainImage" w3-include-html="includes/headimage.html"></div>
 -->
+<div class="container-fluid">
+    <div class="load-html" id="HeadImage" data-source="includes/headimage.html"></div>
+</div>
+
+
 <div class="container-fluid">
     <div class="load-html" id="NavigationMenu" data-source="includes/nav.html"></div>
     <div class="load-html" id="NavigationMenu" data-source="includes/header.html"></div>
@@ -28,8 +34,11 @@
     //Main.toggleShow("demo", "none");
 </script>
 </body>
-<!--<script>w3.includeHTML();</script> -->
+
 <script>
+
+w3.includeHTML();    
+
 $(function () {
     $(".load-html").each(function () {
         $(this).load(this.dataset.source);
