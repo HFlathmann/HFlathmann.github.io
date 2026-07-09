@@ -1,0 +1,20 @@
+<div class="success-toggle-button">
+<input type="checkbox" name="pdid[]" class="toggle" value="1" checked="checked">
+</div>
+<div class="success-toggle-button">
+<input type="checkbox" name="pdid[]" class="toggle" value="2" checked="checked">
+</div>
+<div class="success-toggle-button">
+<input type="checkbox" name="pdid[]" class="toggle" value="3" checked="checked">
+</div>
+<div class="success-toggle-button">
+<input type="checkbox" name="pdid[]" class="toggle" value="4" checked="checked">
+</div>
+<script>
+$('.success-toggle-button').toggleButtons({onChange: function($el, status, e)
+    {
+    console.log($el, status, e);
+    alert();// display value of the checkbox changed???
+}
+});
+</script>
